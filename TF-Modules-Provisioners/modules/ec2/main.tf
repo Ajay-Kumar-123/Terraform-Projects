@@ -82,7 +82,7 @@ resource "aws_instance" "ec2-a" {
       "sudo apt-get install nginx -y",
       "sudo systemctl reload nginx",
       "sudo systemctl start nginx",
-      "sudo systemctl enable nginx",
+      "sudo systemctl enable nginx"
     ]
   }
 
@@ -132,7 +132,7 @@ resource "aws_instance" "ec2-b" {
       "sudo apt-get install nginx -y",
       "sudo systemctl relaod nginx",
       "sudo systemctl start nginx",
-      "sudo systemctl enable nginx",
+      "sudo systemctl enable nginx"
     ]
   }
 
