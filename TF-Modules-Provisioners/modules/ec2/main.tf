@@ -108,7 +108,7 @@ resource "aws_instance" "ec2-a" {
 resource "aws_instance" "ec2-b" {
   ami                    = var.ami-value
   instance_type          = var.instance
-  subnet_id              = aws_subnet.subnet-2.id
+  subnet_id              = var.subnet-2
   vpc_security_group_ids = [aws_security_group.sg.id]
   key_name               = var.secret
 
