@@ -70,7 +70,7 @@ resource "aws_instance" "ec2-a" {
   connection {
     type = "ssh"
     private_key = file("~/.ssh/id_rsa")
-    user = ubuntu
+    user = "ubuntu"
     host = self.public_ip
   }
 
