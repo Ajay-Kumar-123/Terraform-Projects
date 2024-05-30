@@ -67,6 +67,39 @@ resource "aws_instance" "ec2-a" {
     volume_size = 10
   }
 
+  connection {
+    type = "ssh"
+    private_key = file("~/.ssh/id_rsa")
+    user = ubuntu
+    host = self.public_ip
+  }
+
+  provisioner "remote-exec" {
+    inline = [ 
+      "sudo apt update",
+      "sudo apt upgrade -y",
+      "sudo apt dist-upgrade -y",
+      "sudo apt-get install nginx -y",
+      "sudo systemctl reload nginx",
+      "sudo systemctl start nginx",
+      "sudo systemctl enable nginx",
+     ]
+  }
+
+  provisioner "file" {
+    source = "/home/ubuntu/index.html"
+    destination = "/var/www/html"
+  }
+
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} >> private-ip.txt"
+  }
+
+  provisioner "local-exec" {
+    when = destroy
+    command = "echo 'EC2 instance EC2-A destroyed successfully >> destroy-message.txt"
+  }
+
   tags = {
     Name = "EC2-A"
   }
@@ -81,6 +114,40 @@ resource "aws_instance" "ec2-b" {
 
   root_block_device {
     volume_size = 10
+  }
+
+  connection {
+    type = "ssh"
+    private_key = file("~/.ssh/id_rsa")
+    user = "ubuntu"
+    host = self.public_ip
+  }
+
+
+  provisioner "remote-exec" {
+    inline = [ 
+      "sudo apt update",
+      "sudo apt upgrade -y",
+      "sudo apt dist-upgrade -y",
+      "sudo apt-get install nginx -y",
+      "sudo systemctl relaod nginx",
+      "sudo systemctl start nginx",
+      "sudo systemctl enable nginx",    
+     ]
+  }
+
+   provisioner "file" {
+    source = "/home/ubuntu/index.html"
+    destination = "/var/www/html"
+  }
+
+  provisioner "local-exec" {
+    command = "echo ${self.private_ip} >> private-ip.txt"
+  }
+
+  provisioner "local-exec" {
+    when = destroy
+    command = "echo 'EC2 instance, EC2-B destroyed successfully' >> destroy-message.txt"
   }
 
   tags = {
