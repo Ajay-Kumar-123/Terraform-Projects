@@ -77,16 +77,16 @@ resource "aws_instance" "ec2-a" {
   provisioner "remote-exec" {
     inline = [
       "echo 'Updating packages'",
-      "sudo apt update",
-      "echo 'Upgrading packages",
-      "sudo apt upgrade -y",
-      "echo 'Upgrading distro packages'",
-      "sudo apt dist-upgrade -y",
+      "sudo DEBIAN_FRONTEND=noninteractive apt update", #DEBIAN_FRONTEND=noninteractive to avoid kernel upgrade prompts
+      "echo 'Upgrading packages'",
+      "sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y",
+      "echo 'Dist-upgrading packages'",
+      "sudo DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y",
       "echo 'Installing Nginx'",
-      "sudo apt-get install nginx -y",
+      "sudo DEBIAN_FRONTEND=noninteractive apt-get install nginx -y",
       "echo 'Reloading Nginx'",
       "sudo systemctl reload nginx",
-      "echo 'Starting Nginx' ",
+      "echo 'Starting Nginx'",
       "sudo systemctl start nginx",
       "echo 'Enabling Nginx'",
       "sudo systemctl enable nginx"
@@ -134,13 +134,13 @@ resource "aws_instance" "ec2-b" {
   provisioner "remote-exec" {
     inline = [
       "echo 'Updating packages'",
-      "sudo apt update",
+      "sudo DEBIAN_FRONTEND=noninteractive apt update", #DEBIAN_FRONTEND=noninteractive to avoid kernel upgrade prompts
       "echo 'Upgrading packages",
-      "sudo apt upgrade -y",
+      "sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y",
       "echo 'Upgrading distro packages'",
-      "sudo apt dist-upgrade -y",
+      "sudo DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y",
       "echo 'Installing Nginx'",
-      "sudo apt-get install nginx -y",
+      "sudo DEBIAN_FRONTEND=noninteractive apt-get install nginx -y",
       "echo 'Reloading Nginx'",
       "sudo systemctl reload nginx",
       "echo 'Starting Nginx' ",
