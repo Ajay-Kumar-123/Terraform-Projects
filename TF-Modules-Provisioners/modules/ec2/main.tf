@@ -135,7 +135,7 @@ resource "aws_instance" "ec2-b" {
     inline = [
       "echo 'Updating packages'",
       "sudo DEBIAN_FRONTEND=noninteractive apt update", #DEBIAN_FRONTEND=noninteractive to avoid kernel upgrade prompts
-      "echo 'Upgrading packages",
+      "echo 'Upgrading packages'",
       "sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y",
       "echo 'Upgrading distro packages'",
       "sudo DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y",
