@@ -76,12 +76,19 @@ resource "aws_instance" "ec2-a" {
 
   provisioner "remote-exec" {
     inline = [
+      "echo 'Updating packages'",
       "sudo apt update",
+      "echo 'Upgrading packages",
       "sudo apt upgrade -y",
+      "echo 'Upgrading distro packages'",
       "sudo apt dist-upgrade -y",
+      "echo 'Installing Nginx'",
       "sudo apt-get install nginx -y",
+      "echo 'Reloading Nginx'",
       "sudo systemctl reload nginx",
+      "echo 'Starting Nginx' ",
       "sudo systemctl start nginx",
+      "echo 'Enabling Nginx'",
       "sudo systemctl enable nginx"
     ]
   }
@@ -126,12 +133,19 @@ resource "aws_instance" "ec2-b" {
 
   provisioner "remote-exec" {
     inline = [
+      "echo 'Updating packages'",
       "sudo apt update",
+      "echo 'Upgrading packages",
       "sudo apt upgrade -y",
+      "echo 'Upgrading distro packages'",
       "sudo apt dist-upgrade -y",
+      "echo 'Installing Nginx'",
       "sudo apt-get install nginx -y",
-      "sudo systemctl relaod nginx",
+      "echo 'Reloading Nginx'",
+      "sudo systemctl reload nginx",
+      "echo 'Starting Nginx' ",
       "sudo systemctl start nginx",
+      "echo 'Enabling Nginx'",
       "sudo systemctl enable nginx"
     ]
   }
