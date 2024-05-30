@@ -95,7 +95,7 @@ resource "aws_instance" "ec2-a" {
 
   provisioner "file" {
     source      = "/home/ubuntu/index.html"
-    destination = "/var/www/html"
+    destination = "/home/ubuntu/index.html"
   }
 
   provisioner "local-exec" {
@@ -152,7 +152,7 @@ resource "aws_instance" "ec2-b" {
 
   provisioner "file" {
     source      = "/home/ubuntu/index.html"
-    destination = "/var/www/html"
+    destination = "/home/ubuntu/index.html"
   }
 
   provisioner "local-exec" {
