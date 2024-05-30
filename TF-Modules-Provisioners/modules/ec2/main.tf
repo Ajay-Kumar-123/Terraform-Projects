@@ -1,6 +1,6 @@
 resource "aws_security_group" "sg" {
   name = "SG"
-  vpc_id = aws_vpc.vpc-id
+  vpc_id = var.vpc-id
 
   ingress {
     description = "SSH Port"
@@ -29,7 +29,7 @@ resource "aws_security_group" "sg" {
 
 resource "aws_security_group" "lb-sg" {
   name = "LB-SG"
-  vpc_id = aws_vpc.vpc-id
+  vpc_id = var.vpc-id
 
   ingress {
     description = "SSH Port"
@@ -59,7 +59,7 @@ resource "aws_security_group" "lb-sg" {
 resource "aws_instance" "ec2-a" {
   ami = var.ami-value
   instance_type = var.instance
-  subnet_id = aws_subnet.subnet-1.id
+  subnet_id = var.subnet-1
   vpc_security_group_ids = [aws_security_group.sg.id]
   key_name = var.secret
 
