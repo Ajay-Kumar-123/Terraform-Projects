@@ -69,7 +69,7 @@ resource "aws_instance" "ec2-a" {
 
   connection {
     type        = "ssh"
-    private_key = file("/home/ubuntu/aws-secret.pem")
+    private_key = file("~/aws-secret.pem")
     user        = "ubuntu"
     host        = self.public_ip
   }
@@ -118,7 +118,7 @@ resource "aws_instance" "ec2-b" {
 
   connection {
     type        = "ssh"
-    private_key = file("/home/ubuntu/aws-secret.pem")
+    private_key = file("~/aws-secret.pem")
     user        = "ubuntu"
     host        = self.public_ip
   }
