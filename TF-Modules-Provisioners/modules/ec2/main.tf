@@ -104,7 +104,7 @@ resource "aws_instance" "ec2-a" {
 
   provisioner "local-exec" {
     when    = destroy
-    command = "echo 'EC2 instance EC2-A destroyed successfully >> destroy-message.txt"
+    command = "echo 'EC2 instance EC2-A destroyed successfully' >> destroy-message.txt"
   }
 
   tags = {
