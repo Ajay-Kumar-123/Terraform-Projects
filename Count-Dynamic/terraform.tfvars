@@ -1,3 +1,3 @@
-ami-value = "ami-05e00961530ae1b55"
+ami-value     = "ami-05e00961530ae1b55"
 instance-type = "t2.micro"
-secret = "aws-secret"
+secret        = "aws-secret"
